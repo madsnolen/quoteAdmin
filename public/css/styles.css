@@ -1,0 +1,7 @@
+input, select, textarea, button {
+  margin-bottom: 10px;
+}
+
+form {
+  line-height: 1.8;
+}

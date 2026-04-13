@@ -136,19 +136,7 @@ app.get("/quote/edit", async function(req, res){
 
  let quoteId = req.query.quoteId;
 
- let sql = `SELECT *, 
-        DATE_FORMAT(dob, '%Y-%m-%d') dobISO, DATE_FORMAT(dod, '%Y-%m-%d') dodISO
-        FROM q_quotes
-        WHERE quoteId =  ${quoteId}`;
- const [rows] = await conn.query(sql);
- res.render("editQuote", {"quoteInfo":rows});
-});//get edit quote
-
-
-app.post("/quote/edit", async function(req, res){
-  let quoteId = req.query.quoteId;
-
-  let quoteSql = `SELECT *
+ let quoteSql = `SELECT *
                   FROM q_quotes
                   WHERE quoteId = ?`;
 
@@ -156,13 +144,29 @@ app.post("/quote/edit", async function(req, res){
                    FROM q_authors
                    ORDER BY lastName`;
 
-  const [quoteRows] = await conn.query(quoteSql, [quoteId]);
-  const [authorRows] = await conn.query(authorSql);
+ const [quoteRows] = await conn.query(quoteSql, [quoteId]);
+ const [authorRows] = await conn.query(authorSql);
+ res.render("editQuote", {quoteInfo: quoteRows, authors: authorRows});
+});//get edit quote
 
-  res.render("editQuote", {
-    quoteInfo: quoteRows,
-    authors: authorRows
-});
+
+app.post("/quote/edit", async function(req, res){
+  let sql = `UPDATE q_quotes
+             SET quote = ?,
+                 authorId = ?,
+                 category = ?,
+                 likes = ?
+             WHERE quoteId = ?`;
+
+  let params = [
+    req.body.quote,
+    req.body.authorId,
+    req.body.category,
+    req.body.likes,
+    req.body.quoteId
+  ];
+   await conn.query(sql, params);
+   res.redirect("/quotes");
 });//post edit quote
 
 app.get("/quotes", async function(req, res){
