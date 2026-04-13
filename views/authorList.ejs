@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <body>
+  <%- include("partials/header.ejs") %>
+  
+ <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 shadow p-4 bg-white rounded">
+ <h1> Update/Delete Authors </h1>
+
+
+ <% for (i=0; i < authors.length; i++) { %>
+
+
+   <a href="/author/edit?authorId=<%=authors[i].authorId%>">UPDATE</a>
+
+
+   <a href="/author/delete?authorId=<%=authors[i].authorId%>">DELETE</a>
+
+
+   <%=authors[i].firstName%>
+   <%=authors[i].lastName%> <br>
+
+
+ <% } %>
+   <%- include("partials/footer.ejs") %>
+        </div>
+    </div>
+</div>
+</body>
+</html>

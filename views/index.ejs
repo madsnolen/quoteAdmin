@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>CRUD Operations</title>
+</head>
+<body>
+      <%- include("partials/header.ejs") %>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 shadow p-4 bg-white rounded">
+
+ <h1> Famous Quotes - Admin Section </h1>
+
+
+   <form action="/author/new">
+     <button>Add Authors</button>
+   </form><br>
+
+
+   <form action="/quote/new">
+     <button>Add Quotes</button>
+   </form><br>
+
+
+   <form action="/authors">
+     <button>List Authors</button>
+   </form><br>
+ 
+   <form action="/quotes">
+     <button>List Quotes</button>
+   </form>
+    
+
+     <%- include("partials/footer.ejs") %>
+          </div>
+    </div>
+</div>
+
+    
+ </body>
+</html>

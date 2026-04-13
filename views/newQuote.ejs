@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Quote</title>
+</head>
+<body>
+     <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 shadow p-4 bg-white rounded">
+      <%- include("partials/header.ejs") %>
+     <h1>Adding a new Quote</h1>
+
+
+    <form method="POST" action="/quote/new">
+      Quote:
+      <input type="text" name="quote"><br>
+      Author:
+      <select name="authorId">
+        <% for (let author of authors) { %>
+          <option value="<%= author.authorId %>">
+            <%= author.firstName %> <%= author.lastName %>
+          </option>
+        <% } %>
+      </select><br>
+      Category:
+      <input type="text" name="category"><br>
+      Likes:
+      <input type="number" name="likes"><br>
+      <button>Add Quote</button>
+    </form>
+
+    <% if (typeof message != "undefined"){ %>
+  		 <h3><%=message%></h3>
+    <% } %>
+      <%- include("partials/footer.ejs") %>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

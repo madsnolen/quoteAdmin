@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+  <%- include("partials/header.ejs") %>
+<body>
+    <body>
+      <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 shadow p-4 bg-white rounded">
+
+
+ <h1> Update/Delete Quotes </h1>
+
+
+ <% for (i=0; i < quotes.length; i++) { %>
+
+
+   <a href="/quote/edit?quoteId=<%=quotes[i].quoteId%>">UPDATE</a>
+
+
+   <a href="/quote/delete?quoteId=<%=quotes[i].quoteId%>">DELETE</a>
+
+
+   <%=quotes[i].quote%> <br>
+
+
+ <% } %>
+  
+  <%- include("partials/footer.ejs") %>
+    </div>
+    </div>
+</div>
+</body>
+</html>

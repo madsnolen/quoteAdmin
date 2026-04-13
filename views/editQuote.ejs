@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD Operations</title>
+</head>
+<body>
+      <%- include("partials/header.ejs") %>
+  
+  <h1>Updating Quote Data</h1>
+
+  <form method="POST" action="/quote/edit">
+    <input type="hidden" name="quoteId" value="<%= quoteInfo[0].quoteId %>">
+
+    Quote:
+    <input type="text" name="quote" value="<%= quoteInfo[0].quote %>">
+    <br>
+
+    Author:
+    <select name="authorId">
+      <% for (let author of authors) { %>
+        <option value="<%= author.authorId %>"
+          <% if (author.authorId == quoteInfo[0].authorId) { %> selected <% } %>>
+          <%= author.firstName %> <%= author.lastName %>
+        </option>
+      <% } %>
+    </select>
+    <br>
+
+    Category:
+    <input type="text" name="category" value="<%= quoteInfo[0].category %>">
+    <br>
+
+    Likes:
+    <input type="number" name="likes" value="<%= quoteInfo[0].likes %>">
+    <br>
+
+    <button>Update Quote</button>
+  </form>
+
+    </div>
+    </div>
+</div>
+    <%- include("partials/footer.ejs") %>
+</body>
+</html>
